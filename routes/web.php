@@ -38,3 +38,13 @@ Route::group(['prefix' => '/employees', 'middleware' => 'auth'], function () {
     Route::post('/edit/{id}', 'EmployeeController@update')->name('employee.update');
     Route::get('/delete/{id}', 'EmployeeController@destroy')->name('employee.delete');
 });
+
+Route::group(['prefix' => '/employee'], function () {
+    Route::get('/', 'EmployeeAuthController@index') ->name('employee.home')
+    ->middleware('auth:webemployee');
+    Route::get('/login', 'EmployeeAuthController@login')->name('employee.login');
+    Route::post('/login', 'EmployeeAuthController@handleLogin')->name('employee.handleLogin');
+    Route::get('/logout', 'EmployeeAuthController@index')->name('employee.logout');
+});
+
+
