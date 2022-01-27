@@ -19,11 +19,11 @@ class EmployeeAuthController extends Controller
 
     public function handleLogin(Request $req)
     {
-        if(Auth::attempt(
+        if(Auth::guard('webemployee')->attempt(
             $req->only(['email', 'password'])
         ))
         {
-            return redirect()->intended('/');
+            return redirect()->intended('/employee');
         }
 
         return redirect()

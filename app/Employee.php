@@ -2,11 +2,19 @@
 
 namespace App;
 
+
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Employee extends Model
+class Employee extends Authenticatable
 {
-    protected $guarded = [];
+    protected $guard = 'webemployee';
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 
     public function company()
     {
